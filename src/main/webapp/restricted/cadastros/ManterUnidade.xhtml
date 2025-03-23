@@ -1,0 +1,182 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui">
+
+	<ui:define name="corpo">
+
+		<h1>Manter Unidade</h1>
+
+		<h:form id="frmPesquisa">
+			<p:messages id="messages" showDetail="false" closable="true">
+				<p:autoUpdate />
+			</p:messages>
+
+			<p:commandButton icon="pi pi-plus" value="Novo" id="botaoNovo"
+				oncomplete="PF('editarDialogWidgetVar').show()"				
+				update="editarDialog" process="@this" />
+
+			<p:dataTable id="unidadesTable" var="unidade"
+				value="#{manterUnidadeBean.unidades}" style="margin-top: 20px"
+				rowStyleClass="#{unidade.nome eq pesquisaUnidadeBean.unidade.nome ? 'inativo' : null}"
+				emptyMessage="Nenhuma unidade encontrada." rows="10"
+				paginator="true" paginatorAlwaysVisible="true"
+				paginatorPosition="bottom" rowsPerPageTemplate="5,10,15">
+
+				<p:column headerText="Código"
+					style="width: 15px; text-align: center">
+					<h:outputText value="#{unidade.codigo}" />
+				</p:column>
+
+				<p:column headerText="Unidade" sortBy="#{unidade.nome}" style="width: 90px; text-align: left">
+					<h:outputText value="#{unidade.nome}" />
+				</p:column>
+
+				<p:column headerText="Endereço"
+					style="width: 100px; text-align: left">
+					<h:outputText
+						value="#{unidade.endereco.endereco}, #{unidade.endereco.numero}" />
+				</p:column>
+
+				<p:column headerText="Cep" style="width: 30px; text-align: left">
+					<h:outputText value="#{unidade.endereco.cep}" />
+				</p:column>
+
+
+				<p:column headerText="Operações"
+					style="width: 40px; text-align: center">
+
+					<p:commandButton id="cb1" icon="pi pi-pencil"
+						title="Editar Unidade"
+						oncomplete="PF('editarDialogWidgetVar').show()"
+						update=":frmPesquisa:editarDialog" process="@this">
+						<f:setPropertyActionListener target="#{manterUnidadeBean.unidade}"
+							value="#{unidade}" />
+					</p:commandButton>
+
+					<p:commandButton icon="pi pi-trash" title="Excluir"
+						onclick="PF('confirmacaoExclusao').show();" process="@this">
+						<f:setPropertyActionListener target="#{manterUnidadeBean.unidade}"
+							value="#{unidade}" />
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+
+			<p:dialog id="editarDialog" header="Atendimento"
+				widgetVar="editarDialogWidgetVar" modal="true" resizable="true"
+				closeOnEscape="true" showEffect="explode" hideEffect="explode"
+				width="100%" position="center top" maximizable="true" height="70%"
+				fitViewport="true" responsive="true">
+
+				<p:panelGrid columns="2" id="editarGrid"
+					style="width: 100%; margin-top: 20px" columnClasses="rotulo, campo">
+
+					<p:outputLabel value="Código" for="codigo" />
+					<p:outputLabel id="codigo" size="20" maxlength="20"
+						value="#{manterUnidadeBean.unidade.codigo}" />
+
+					<p:outputLabel value="Nome" for="name" />
+					<p:inputText id="name" size="60" maxlength="80"
+						value="#{manterUnidadeBean.unidade.nome}" required="true"
+						validatorMessage="O nome é obrigatório." />
+
+					<p:outputLabel value="Telefone Contato" for="phone" />
+					<p:inputText id="phone" size="20" maxlength="20" required="true"
+						validatorMessage="O telefone é obrigatório."
+						value="#{manterUnidadeBean.unidade.endereco.telefoneContato}" />
+
+					<p:outputLabel for="cep" value="CEP" />
+					<h:panelGroup>
+						<p:inputMask id="cep" mask="99999-999" size="9"
+							value="#{manterUnidadeBean.unidade.endereco.cep}"
+							required="true" validatorMessage="O cep é obrigatório." />
+
+						<p:spacer width="10px" />
+
+						<p:commandButton value="Buscar"
+							action="#{manterUnidadeBean.buscaEnderecoPorCEP}"
+							update="cep endereco bairro municipio uf" process="@this cep"
+							imadiate="true" />
+					</h:panelGroup>
+
+
+					<p:outputLabel value="Endereço" for="endereco" />
+					<p:inputText id="endereco" size="60" maxlength="80"
+						value="#{manterUnidadeBean.unidade.endereco.endereco}"
+						required="true" validatorMessage="O endereço é obrigatório." />
+
+					<p:outputLabel value="Número" for="numero" />
+					<p:inputText id="numero" size="5" maxlength="8" required="true"
+						value="#{manterUnidadeBean.unidade.endereco.numero}">
+					</p:inputText>
+
+					<p:outputLabel value="Complemento" for="complemento" />
+					<p:inputText id="complemento" size="60" maxlength="80"
+						value="#{manterUnidadeBean.unidade.endereco.complemento}" />
+
+					<p:outputLabel value="Bairro" for="bairro" />
+					<p:inputText id="bairro" size="60" maxlength="80" readonly="true"
+						value="#{manterUnidadeBean.unidade.endereco.bairro}" />
+
+					<p:outputLabel value="Município" for="municipio" />
+					<p:inputText id="municipio" size="60" maxlength="80"
+						value="#{manterUnidadeBean.unidade.endereco.municipio}"
+						readonly="true" validatorMessage="O município é obrigatório." />
+
+					<p:outputLabel value="UF" for="uf" />
+					<p:selectOneMenu id="uf"
+						value="#{manterUnidadeBean.unidade.endereco.uf}" readonly="true"
+						validatorMessage="A UF é obrigatória.">
+						<f:selectItem itemLabel="Selecione a UF" />
+						<f:selectItems value="#{manterUnidadeBean.ufs}" var="uf"
+							itemLabel="#{uf}" itemValue="#{uf}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="Referência" for="referencia" />
+					<h:panelGroup>
+						<p:inputText id="referencia" size="60" maxlength="80"
+							value="#{manterUnidadeBean.unidade.endereco.referencia}"
+							placeholder="local próximo conhecido" />
+					</h:panelGroup>
+
+					<h:panelGroup>
+						<p:commandButton icon="pi pi-save" id="salvarButton"
+							value="Salvar" title="Grava dados do unidade"
+							actionListener="#{manterUnidadeBean.salvar}"
+							oncomplete="if (!args.validationFailed) PF('editarDialogWidgetVar').hide()"
+							update="unidadesTable messages" process="@this">
+						</p:commandButton>
+
+						<p:spacer width="10px" />
+
+						<p:commandButton icon="pi pi-replay" value="Sair"
+							actionListener="#{manterUnidadeBean.limpar}"
+							update="frmPesquisa editarGrid"
+							onclick="PF('editarDialogWidgetVar').hide();" process="@this" />
+					</h:panelGroup>
+
+				</p:panelGrid>
+
+			</p:dialog>
+
+			<p:confirmDialog id="confirmacaoExclusaoDialog"
+				widgetVar="confirmacaoExclusao"
+				message="Tem certeza que deseja excluir o usuário #{manterUnidadeBean.unidade.nome}?"
+				header="Exclusão de usuário" severity="alert">
+				<p:button icon="pi pi-thumbs-down" value="Não"
+					onclick="PF('confirmacaoExclusao').hide(); return false;"
+					process="@this" />
+				<p:commandButton icon="pi pi-thumbs-up" value="Sim"
+					update=":frmPesquisa:unidadesTable"
+					onclick="PF('confirmacaoExclusao').hide();"
+					action="#{manterUnidadeBean.excluir}" process="@this" />
+			</p:confirmDialog>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

@@ -1,0 +1,20 @@
+<!DOCTYPE xml>
+<menu>
+	<submenu label="Cadastros" icon="pi pi-folder-open">
+		<role value="GESTOR"></role>
+		<menuitem value="Unidades"
+			outcome="/restricted/cadastros/ManterUnidade.xhtml">
+		</menuitem>
+		<role value="GESTOR"></role>
+		<menuitem value="Usuarios"
+			outcome="/restricted/cadastros/ManterUsuario.xhtml">
+		</menuitem>
+		
+	</submenu>
+
+	<submenu label="Acolhimento" icon="pi pi-warehouse">
+		<role value="TECNICO"></role>
+	</submenu>
+	
+	
+</menu>
