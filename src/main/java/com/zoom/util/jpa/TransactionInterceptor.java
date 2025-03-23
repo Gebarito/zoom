@@ -6,8 +6,9 @@ import javax.inject.Inject;
 import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 
 /**
  * @author murakamiadmin/AlgaWorks curso

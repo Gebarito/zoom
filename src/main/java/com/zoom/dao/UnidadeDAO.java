@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceException;
 
 import com.zoom.modelo.Unidade;
 import com.zoom.util.NegocioException;
 import com.zoom.util.jpa.Transactional;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceException;
 import lombok.extern.log4j.Log4j;
 
 /**

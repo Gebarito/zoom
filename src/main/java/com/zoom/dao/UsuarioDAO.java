@@ -4,9 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceException;
 
 import com.zoom.modelo.Unidade;
 import com.zoom.modelo.Usuario;
@@ -14,6 +11,10 @@ import com.zoom.modelo.enums.Role;
 import com.zoom.modelo.enums.Status;
 import com.zoom.util.NegocioException;
 import com.zoom.util.jpa.Transactional;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.PersistenceException;
 
 /**
  * @author murakamiadmin

@@ -10,7 +10,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.PersistenceException;
 import javax.servlet.http.HttpServletRequest;
 
 import com.zoom.service.EsqueciSenhaService;
@@ -18,6 +17,7 @@ import com.zoom.util.MessageUtil;
 import com.zoom.util.NegocioException;
 import com.zoom.util.email.EMailException;
 
+import jakarta.persistence.PersistenceException;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;

@@ -21,9 +21,9 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import com.zoom.util.NegocioException;
 
 import lombok.extern.log4j.Log4j;
-
 
 /**
  * Componente para envio de e-mails

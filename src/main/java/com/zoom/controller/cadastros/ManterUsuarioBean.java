@@ -8,7 +8,6 @@ import javax.annotation.PostConstruct;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.PersistenceException;
 
 import com.zoom.controller.LoginBean;
 import com.zoom.modelo.Unidade;
@@ -20,6 +19,7 @@ import com.zoom.service.UsuarioService;
 import com.zoom.util.MessageUtil;
 import com.zoom.util.NegocioException;
 
+import jakarta.persistence.PersistenceException;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
