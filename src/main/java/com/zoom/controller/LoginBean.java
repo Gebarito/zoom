@@ -50,9 +50,7 @@ public class LoginBean implements Serializable {
 	private UsuarioService usuarioService;
 	@Inject
 	private LoginService loginService;
-	//@Inject
-    //private ThemeService themeService;
-	//private Theme theme;
+
     
 	private String serverId;
 	private String email;
