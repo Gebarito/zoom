@@ -12,7 +12,7 @@
     	
     	<h2>Alterar senha</h2>
     
-    	<h:form id="frmCadastro">
+    	<h:form id="frmsenha">
     	
 	    	<p:messages id="messages" showDetail="true" closable="true">
         		<p:autoUpdate />
@@ -25,7 +25,7 @@
 			    		outcome="/restricted/home/ZoomHome.xhtml"/>
 			    	<p:spacer width="10px" />
 			    	<p:commandButton value="Salvar" id="botaoSalvar" icon="pi pi-save"
-    					action="#{alterarPerfilBean.salvar}" update="@form"/>	    
+    					action="#{alterarPerfilBean.salvarSenha}" update="@form" process="@this frmsenha"/>	    
 				</p:toolbarGroup>
 	    	</p:toolbar>
 	    	

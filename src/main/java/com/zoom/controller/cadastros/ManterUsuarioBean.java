@@ -2,6 +2,7 @@ package com.zoom.controller.cadastros;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -53,6 +54,9 @@ public class ManterUsuarioBean implements Serializable {
 		log.info("init pesquisa");
 		this.usuarios = usuarioService.buscarTodos();
 		this.unidades = unidadeService.buscarTodos();
+		this.status = Arrays.asList(Status.values());
+		this.roles = Arrays.asList(Role.values());
+		this.unidade = loginBean.getUsuario().getUnidade();
 		limpar();
 	}
 	

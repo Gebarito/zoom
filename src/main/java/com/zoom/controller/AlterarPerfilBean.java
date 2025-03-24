@@ -46,7 +46,7 @@ public class AlterarPerfilBean implements Serializable {
 		this.usuario = usuarioLogado.getUsuario();		
 	}
 	
-	public void salvar() {
+	public void salvarSenha() {
 		try {
 			this.usuarioService.trocarSenha(usuario, senhaAntiga);
 			MessageUtil.sucesso("Senha alterada com sucesso! Saia do sistema e faça login novamente.");

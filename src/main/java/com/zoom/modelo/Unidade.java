@@ -6,16 +6,14 @@ import java.time.OffsetDateTime;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToOne;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -47,11 +45,9 @@ public class Unidade implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long codigo;
 	
-	private String nome;
-	
+	private String nome;	
 
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="codigo_endereco")
+	@Embedded
 	private Endereco endereco;
 	
 	/*
@@ -66,3 +62,5 @@ public class Unidade implements Serializable {
 	@Column(columnDefinition = "datetime")
 	private OffsetDateTime dataModificacao;
 }
+
+	

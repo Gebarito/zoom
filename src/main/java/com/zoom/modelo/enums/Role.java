@@ -7,7 +7,6 @@ package com.zoom.modelo.enums;
 public enum Role {
 
 	TECNICO,
-	GESTOR,
-	ADMINISTRADOR
-	
+	GESTOR;
+
 }
