@@ -14,7 +14,6 @@
 	</f:metadata>
 		<h:form id="formEsqueciSenha"  >
 
-
 			<div class="card" style="text-align:center">
 				<p:splitter style="height: 300px" layout="vertical">
 					<p:splitterPanel styleClass="flex align-items-center justify-content-center" >
@@ -27,8 +26,10 @@
 					</p:splitterPanel>
 
 					<p:splitterPanel styleClass="flex align-items-center justify-content-center">
-						<div class="card" >						
-							<p:messages id="msg" showDetail="false" closable="true" redisplay="false">
+						<div class="card" >					
+							
+							<p:messages id="msg" showDetail="false" closable="true">
+								<p:autoUpdate />
 							</p:messages>
 							
 							<h:panelGrid id="autenticar" columns="1" cellpadding="2" style="margin:0 auto">
@@ -60,7 +61,7 @@
 									<p:commandButton id="bt1" value="Enviar" icon="pi pi-check" styleClass="p-mr-2"
 										rendered="#{not loginBean.autenticado}" 
 										action="#{esqueciSenhaBean.enviar}"
-										update="msg"
+										update="formEsqueciSenha msg"
 										process="@this novaSenha1 novaSenha2"/>
 								
 							</h:panelGrid>
@@ -74,8 +75,8 @@
 				</p:splitter>
 			</div>
 
-			<div>
-				<h:graphicImage library="imagens" name="gaian_paleta_esquerda.png" width="250" height="600" />
+			<div class="card">
+				<h:graphicImage library="imagens" name="paleta_esquerda.png" width="200" height="480" />
 			</div>
 		</h:form>
 	

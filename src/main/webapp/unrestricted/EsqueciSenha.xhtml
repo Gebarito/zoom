@@ -9,8 +9,8 @@
 	
 	<ui:define name="corpo">
 		
-		<h:form id="formEsqueciSenha">		
-
+		<h:form id="formEsqueci">	
+		
 			<div class="card" style="text-align:center">
 			
 				<p:splitter style="height: 250px" layout="vertical">
@@ -24,13 +24,14 @@
 						<br></br>
 					</p:splitterPanel>			
 				
-					<p:splitterPanel styleClass="flex align-items-center justify-content-center" >
+					<p:splitterPanel id="split" styleClass="flex align-items-center justify-content-center" >
+					
+						<p:messages id="msg" showDetail="false" closable="true">
+							<p:autoUpdate />
+						</p:messages>
 
 						<p:panelGrid id="autenticar" columns="1" cellpadding="10"
 							style="margin: 0 auto;">
-							
-							<p:messages id="msg" showDetail="false" closable="true" redisplay="false">
-							</p:messages>
 					
 							<h:panelGroup>
 								<p:outputLabel value="Informe o seu e-mail abaixo para receber as instruções de como criar uma nova senha."/>
@@ -50,7 +51,8 @@
 							<p:commandButton id="bt1" value="Criar nova senha" icon="pi pi-check"
 								rendered="#{not loginBean.autenticado}" styleClass="p-mr-2"
 								action="#{esqueciSenhaBean.esqueciSenhaEnviar}" 
-								update="autenticar" />
+								update="formEsqueci"
+								process="@this email" />
 							
 						</p:panelGrid>
 						
@@ -65,7 +67,7 @@
 			</div>
 
 			<div class="card">
-				<h:graphicImage library="imagens" name="gaian_paleta_esquerda.png" width="250" height="600" />
+				<h:graphicImage library="imagens" name="paleta_esquerda.png" width="200" height="480" />
 			</div>
 		</h:form>
 	
