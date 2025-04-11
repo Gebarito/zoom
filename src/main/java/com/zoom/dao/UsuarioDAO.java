@@ -3,7 +3,7 @@ package com.zoom.dao;
 import java.io.Serializable;
 import java.util.List;
 
-import jakarta.inject.Inject;
+import javax.inject.Inject;
 
 import com.zoom.modelo.Unidade;
 import com.zoom.modelo.Usuario;
@@ -12,9 +12,9 @@ import com.zoom.modelo.enums.Status;
 import com.zoom.util.NegocioException;
 import com.zoom.util.jpa.Transactional;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.PersistenceException;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 
 /**
  * @author murakamiadmin

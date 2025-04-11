@@ -5,19 +5,19 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Map;
 
-import jakarta.annotation.PostConstruct;
-import jakarta.faces.context.FacesContext;
-import jakarta.faces.view.ViewScoped;
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import jakarta.servlet.http.HttpServletRequest;
+import javax.annotation.PostConstruct;
+import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.servlet.http.HttpServletRequest;
 
 import com.zoom.service.EsqueciSenhaService;
 import com.zoom.util.MessageUtil;
 import com.zoom.util.NegocioException;
 import com.zoom.util.email.EMailException;
 
-import jakarta.persistence.PersistenceException;
+import javax.persistence.PersistenceException;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;

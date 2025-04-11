@@ -445,7 +445,7 @@ public class EMailUtil {
 		prop.put("mail.smtp.port", "465");
 		prop.put("mail.smtp.auth", "true");
 		prop.put("mail.smtp.socketFactory.port", "465");
-		prop.put("mail.smtp.socketFactory.class", "jakarta.net.ssl.SSLSocketFactory");
+		prop.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
 
 		Authenticator auth = new Authenticator() {
 			// override the getPasswordAuthentication method

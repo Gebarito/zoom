@@ -3,16 +3,16 @@ package com.zoom.dao;
 import java.io.Serializable;
 import java.util.Date;
 
-import jakarta.inject.Inject;
+import javax.inject.Inject;
 
 import com.zoom.modelo.EsqueciSenha;
 import com.zoom.modelo.Usuario;
 import com.zoom.util.NegocioException;
 import com.zoom.util.jpa.Transactional;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.PersistenceException;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 
 public class EsqueciSenhaDAO implements Serializable {
 	/**

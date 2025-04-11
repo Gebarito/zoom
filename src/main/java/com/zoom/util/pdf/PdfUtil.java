@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import jakarta.faces.context.FacesContext;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletResponse;
 
 import com.zoom.util.NegocioException;
 

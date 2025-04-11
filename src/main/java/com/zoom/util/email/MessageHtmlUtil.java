@@ -68,7 +68,7 @@ public class MessageHtmlUtil {
                 "                    </tr> <!-- COPY -->\n" +
                 "                    <tr>\n" +
                 "                        <td bgcolor=\"#ffffff\" align=\"left\" style=\"padding: 0px 30px 40px 30px; border-radius: 0px 0px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;\">\n" +
-                "                            <p style=\"margin: 0;\">Abraços,<br>Time SVSA!</p>\n" +
+                "                            <p style=\"margin: 0;\">Abraços,<br>TimeZoom</p>\n" +
                 "                        </td>\n" +
                 "                    </tr>\n" +
                 "                </table>\n" +
