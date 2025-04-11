@@ -1,7 +1,7 @@
 package com.zoom.modelo.converter;
 
-import javax.faces.convert.EnumConverter;
-import javax.faces.convert.FacesConverter;
+import jakarta.faces.convert.EnumConverter;
+import jakarta.faces.convert.FacesConverter;
 
 import com.zoom.modelo.enums.Role;
 

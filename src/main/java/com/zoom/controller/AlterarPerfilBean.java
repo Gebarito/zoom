@@ -2,16 +2,15 @@ package com.zoom.controller;
 
 import java.io.Serializable;
 
-import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import javax.inject.Named;
-
 import com.zoom.modelo.Usuario;
 import com.zoom.service.UsuarioService;
 import com.zoom.util.MessageUtil;
 import com.zoom.util.NegocioException;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.view.ViewScoped;
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -42,7 +41,7 @@ public class AlterarPerfilBean implements Serializable {
 	@PostConstruct
 	public void inicializar() {
 		
-		log.info("Alterar Perfil " + usuarioLogado.getUsuario());
+		log.debug("Alterar Perfil " + usuarioLogado.getUsuario());
 		this.usuario = usuarioLogado.getUsuario();		
 	}
 	

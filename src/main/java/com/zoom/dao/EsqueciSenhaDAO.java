@@ -3,7 +3,7 @@ package com.zoom.dao;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import com.zoom.modelo.EsqueciSenha;
 import com.zoom.modelo.Usuario;

@@ -3,7 +3,7 @@ package com.zoom.service;
 import java.io.Serializable;
 import java.util.List;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import com.zoom.dao.UnidadeDAO;
 import com.zoom.modelo.Unidade;

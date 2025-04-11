@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
-import javax.inject.Inject;
+import jakarta.inject.Inject;
 
 import org.apache.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;

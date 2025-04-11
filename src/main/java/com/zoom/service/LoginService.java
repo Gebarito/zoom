@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 
-import javax.annotation.PostConstruct;
-import javax.faces.context.ExternalContext;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.FactoryConfigurationError;
@@ -23,6 +21,8 @@ import org.xml.sax.SAXException;
 import com.zoom.modelo.Usuario;
 import com.zoom.modelo.enums.Role;
 
+import jakarta.annotation.PostConstruct;
+import jakarta.faces.context.ExternalContext;
 import lombok.extern.log4j.Log4j;
 
 /**

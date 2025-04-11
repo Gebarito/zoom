@@ -3,8 +3,8 @@ package com.zoom.modelo;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;

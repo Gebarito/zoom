@@ -2,7 +2,7 @@ package com.zoom.modelo;
 
 import java.io.Serializable;
 
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotBlank;
 
 import jakarta.persistence.Embeddable;
 import lombok.EqualsAndHashCode;
