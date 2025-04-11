@@ -10,7 +10,6 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.PersistenceException;
 import javax.servlet.http.HttpServletRequest;
 
 import com.zoom.service.EsqueciSenhaService;
@@ -18,6 +17,7 @@ import com.zoom.util.MessageUtil;
 import com.zoom.util.NegocioException;
 import com.zoom.util.email.EMailException;
 
+import javax.persistence.PersistenceException;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -58,7 +58,8 @@ public class EsqueciSenhaBean implements Serializable {
 		try {	
 			
 			esqueciSenhaService.novoToken(this.email, getContextPath());
-			MessageUtil.sucesso("E-mail enviado. Verifique sua caixa de postal.");
+			MessageUtil.sucesso("Solicitação realizada com sucesso! Troque sua senha clicando no link enviado para seu e-mail.");
+			log.info("Solicitação realizada com sucesso! Troque sua senha clicando no link enviado para seu e-mail.");
 
 		} catch (PersistenceException e) {
 			MessageUtil.erro(e.getMessage());
@@ -69,7 +70,7 @@ public class EsqueciSenhaBean implements Serializable {
 		} catch (NegocioException e) {
 			MessageUtil.erro(e.getMessage());
 			e.printStackTrace();
-		}	
+		}		
 	}
 
 	public void validarToken() {
@@ -98,7 +99,8 @@ public class EsqueciSenhaBean implements Serializable {
 			if (novaSenha1.compareTo(this.novaSenha2) == 0) {
 				if (esqueciSenhaService.esqueciSenhaValidar(token)) {
 					esqueciSenhaService.alterarSenhaBanco(this.token, this.novaSenha1);
-					MessageUtil.sucesso("Senha redefinida com sucesso!");
+					MessageUtil.sucesso("Senha redefinida com sucesso! Volte e entre com a nova senha.");
+					log.info("Senha redefinida com sucesso! Volte e entre com a nova senha.");
 
 				} else {
 					throw new NegocioException("Token inválido e/ou expirado.");

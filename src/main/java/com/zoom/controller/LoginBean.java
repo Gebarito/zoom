@@ -15,7 +15,6 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.NoResultException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -33,6 +32,7 @@ import com.zoom.util.MessageUtil;
 import com.zoom.util.NegocioException;
 import com.zoom.util.listener.SessionCounter;
 
+import javax.persistence.NoResultException;
 import lombok.extern.log4j.Log4j;
 
 /**
@@ -50,9 +50,7 @@ public class LoginBean implements Serializable {
 	private UsuarioService usuarioService;
 	@Inject
 	private LoginService loginService;
-	//@Inject
-    //private ThemeService themeService;
-	//private Theme theme;
+
     
 	private String serverId;
 	private String email;

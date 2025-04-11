@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.inject.Inject;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceException;
 
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -23,6 +21,8 @@ import com.zoom.util.email.EMailException;
 import com.zoom.util.email.EMailUtil;
 import com.zoom.util.email.MessageHtmlUtil;
 
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 import lombok.extern.log4j.Log4j;
 
 @Log4j

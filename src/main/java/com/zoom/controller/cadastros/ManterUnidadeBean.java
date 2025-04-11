@@ -61,16 +61,22 @@ public class ManterUnidadeBean implements Serializable {
 	public void salvar() {
 
 		try {
-			log.info("unidade nome = " + unidade.getCodigo());
+			log.info("unidade codigo = " + unidade.getCodigo());
 			log.info("unidade nome = " + unidade.getNome());
-			log.info("unidade nome = " + unidade.getEndereco().getEndereco());
+			log.info("unidade endereco = " + unidade.getEndereco().getLogradouro());
+			log.info("unidade numero = " + unidade.getEndereco().getNumero());
 			
 			unidade.getEndereco().setMunicipio(unidade.getEndereco().getMunicipio());
 			Unidade unid = this.unidadeService.salvar(unidade);			
 			this.unidades = unidadeService.buscarTodos();
 			
 			MessageUtil.sucesso("Unidade salva com sucesso!");
-			log.info("unidade salva = " + unid.getNome());
+			log.info("unidade salva codigo = " + unid.getCodigo());
+			log.info("unidade salva nome = " + unid.getNome());
+			log.info("unidade salva endereco = " + unid.getEndereco().getLogradouro());
+			log.info("unidade salva numero = " + unid.getEndereco().getNumero());
+			
+			log.info(unidade.getEndereco().toString());
 			
 		} catch (NegocioException e) {
 			e.printStackTrace();
@@ -94,10 +100,12 @@ public class ManterUnidadeBean implements Serializable {
 			 * Preenche o Endereco com os dados buscados
 			 */
 			unidade.getEndereco()
-					.setEndereco(enderecoTO.getTipoLogradouro().concat(" ").concat(enderecoTO.getLogradouro()));
+					.setLogradouro(enderecoTO.getTipoLogradouro().concat(" ").concat(enderecoTO.getLogradouro()));
 			unidade.getEndereco().setBairro(enderecoTO.getBairro());
 			unidade.getEndereco().setMunicipio(enderecoTO.getCidade());
 			unidade.getEndereco().setUf(enderecoTO.getEstado());
+			
+			
 
 			if (enderecoTO.getResultado() != 1) {
 				MessageUtil.erro("Endereço não encontrado para o CEP fornecido.");

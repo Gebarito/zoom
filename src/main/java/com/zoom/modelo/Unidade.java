@@ -3,20 +3,17 @@ package com.zoom.modelo;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 
-import javax.persistence.CascadeType;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -48,11 +45,9 @@ public class Unidade implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long codigo;
 	
-	private String nome;
-	
+	private String nome;	
 
-	@OneToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="codigo_endereco")
+	@Embedded
 	private Endereco endereco;
 	
 	/*
@@ -67,3 +62,5 @@ public class Unidade implements Serializable {
 	@Column(columnDefinition = "datetime")
 	private OffsetDateTime dataModificacao;
 }
+
+	

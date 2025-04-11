@@ -5,8 +5,6 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.persistence.NoResultException;
-import javax.persistence.PersistenceException;
 
 import org.apache.log4j.Logger;
 import org.mindrot.jbcrypt.BCrypt;
@@ -17,6 +15,9 @@ import com.zoom.modelo.Usuario;
 import com.zoom.modelo.enums.Role;
 import com.zoom.modelo.enums.Status;
 import com.zoom.util.NegocioException;
+
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 
 /**
  * @author murakamiadmin

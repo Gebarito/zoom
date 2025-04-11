@@ -21,9 +21,9 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import com.zoom.util.NegocioException;
 
 import lombok.extern.log4j.Log4j;
-
 
 /**
  * Componente para envio de e-mails
@@ -407,59 +407,6 @@ public class EMailUtil {
 	}
 
 	
-	/*
-	 * Configurations Titan
-	 * 
-	 * Outgoing Mail (SMTP) Server requires TLS or SSL: 
-	 * Use Authentication: Yes Port for SSL: 465
-	 * Use Authentication: Yes Port for TLS/STARTTLS: 587
-	 *
-	 
-	private static final String fromEmail = "no_reply@gaian.com.br"; // requires valid id
-	private static final String password = "R35rB@r9EQb7#Qs"; // correct password for id
-	private static final String smtpHostServer = "smtp.titan.email"; // smtp host server
-		
-
-	private static Session getSessionTLS() {
-
-		log.info("TLSEmail Start");
-		Properties props = new Properties();
-		props.put("mail.smtp.host", smtpHostServer); // SMTP Host
-		props.put("mail.smtp.port", "587"); // TLS Port
-		props.put("mail.smtp.auth", "true"); // enable authentication
-		props.put("mail.smtp.starttls.enable", "true"); // enable STARTTLS
-
-		// create Authenticator object to pass in Session.getInstance argument
-		Authenticator auth = new Authenticator() {
-			// override the getPasswordAuthentication method
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(fromEmail, password);
-			}
-		};
-
-		return Session.getInstance(props, auth);
-	}
-	
-	private static Session getSessionSSL() {
-
-		log.info("SSLEmail Start");
-		Properties props = new Properties();
-		props.put("mail.smtp.host", smtpHostServer); // SMTP Host
-		props.put("mail.smtp.socketFactory.port", "465"); // SSL Port
-		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory"); // SSL Factory Class
-		props.put("mail.smtp.auth", "true"); // Enabling SMTP Authentication
-		props.put("mail.smtp.port", "465"); // SMTP Port
-
-		Authenticator auth = new Authenticator() {
-			// override the getPasswordAuthentication method
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(fromEmail, password);
-			}
-		};
-
-		return Session.getDefaultInstance(props, auth);
-	}
-	*/
 	
 	
 	/*

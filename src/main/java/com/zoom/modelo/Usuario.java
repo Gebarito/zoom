@@ -3,6 +3,15 @@ package com.zoom.modelo;
 import java.io.Serializable;
 import java.time.OffsetDateTime;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import com.zoom.modelo.enums.Role;
+import com.zoom.modelo.enums.Status;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -14,15 +23,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
-
-import com.zoom.modelo.enums.Role;
-import com.zoom.modelo.enums.Status;
-
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

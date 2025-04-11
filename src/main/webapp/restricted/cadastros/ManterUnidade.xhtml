@@ -19,11 +19,13 @@
 				update="editarDialog" process="@this" />
 
 			<p:dataTable id="unidadesTable" var="unidade"
-				value="#{manterUnidadeBean.unidades}" style="margin-top: 20px"
-				rowStyleClass="#{unidade.nome eq pesquisaUnidadeBean.unidade.nome ? 'inativo' : null}"
-				emptyMessage="Nenhuma unidade encontrada." rows="10"
-				paginator="true" paginatorAlwaysVisible="true"
-				paginatorPosition="bottom" rowsPerPageTemplate="5,10,15">
+				value="#{manterUnidadeBean.unidades}" 
+				style="margin-top: 20px" emptyMessage="Nenhuma unidade encontrada."
+				paginator="true" rows="10" paginatorPosition="bottom"
+				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} 
+				{CurrentPageReport} {NextPageLink} {LastPageLink}"
+				currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registros"
+				rowsPerPageTemplate="10,15,{ShowAll|'All'}" lazy="false">
 
 				<p:column headerText="Código"
 					style="width: 15px; text-align: center">
@@ -37,7 +39,7 @@
 				<p:column headerText="Endereço"
 					style="width: 100px; text-align: left">
 					<h:outputText
-						value="#{unidade.endereco.endereco}, #{unidade.endereco.numero}" />
+						value="#{unidade.endereco.logradouro}, #{unidade.endereco.numero}" />
 				</p:column>
 
 				<p:column headerText="Cep" style="width: 30px; text-align: left">
@@ -105,7 +107,7 @@
 
 					<p:outputLabel value="Endereço" for="endereco" />
 					<p:inputText id="endereco" size="60" maxlength="80"
-						value="#{manterUnidadeBean.unidade.endereco.endereco}"
+						value="#{manterUnidadeBean.unidade.endereco.logradouro}"
 						required="true" validatorMessage="O endereço é obrigatório." />
 
 					<p:outputLabel value="Número" for="numero" />
@@ -147,7 +149,7 @@
 							value="Salvar" title="Grava dados do unidade"
 							actionListener="#{manterUnidadeBean.salvar}"
 							oncomplete="if (!args.validationFailed) PF('editarDialogWidgetVar').hide()"
-							update="unidadesTable messages" process="@this">
+							update="unidadesTable messages" process="@this editarGrid">
 						</p:commandButton>
 
 						<p:spacer width="10px" />

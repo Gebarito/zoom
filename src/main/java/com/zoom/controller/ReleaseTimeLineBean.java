@@ -43,7 +43,7 @@ public class ReleaseTimeLineBean implements Serializable {
     protected void initialize() {
         model = new TimelineModel<>();
         model.add(TimelineEvent.<String>builder().data("v0.1.0")
-        		.startDate(LocalDate.of(2024, 10, 03)).build());
+        		.startDate(LocalDate.of(2025, 03, 20)).build());
        
     }
 

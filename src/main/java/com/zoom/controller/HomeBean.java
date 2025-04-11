@@ -42,16 +42,14 @@ public class HomeBean implements Serializable {
 	    	log.info("HomeBean inicializando...");
 	        products = getProducts();
 	        responsiveOptions = new ArrayList<>();
-	        responsiveOptions.add(new ResponsiveOption("300px", 3, 3));
 	        responsiveOptions.add(new ResponsiveOption("300px", 2, 2));
 	        responsiveOptions.add(new ResponsiveOption("300px", 1, 1));
 	    }    
 	    
 
 	    public List<LogoTO> getProducts() {
-	    	products.add(new LogoTO("Gaian", "logo_Gaian_baixa_RGB.png"));
 	    	products.add(new LogoTO("Ifsp", "IFSP_Salto_Transparente.png"));
-	    	products.add(new LogoTO("Salto", "Prefeitura_Salto_t.png"));  	
+	    	products.add(new LogoTO("Zoom", "logo-zoom.png"));  	
 	    	
 	        return products;
 	    }

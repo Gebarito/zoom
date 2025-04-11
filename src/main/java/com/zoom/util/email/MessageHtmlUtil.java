@@ -68,7 +68,7 @@ public class MessageHtmlUtil {
                 "                    </tr> <!-- COPY -->\n" +
                 "                    <tr>\n" +
                 "                        <td bgcolor=\"#ffffff\" align=\"left\" style=\"padding: 0px 30px 40px 30px; border-radius: 0px 0px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;\">\n" +
-                "                            <p style=\"margin: 0;\">Abraços,<br>Time SVSA!</p>\n" +
+                "                            <p style=\"margin: 0;\">Abraços,<br>TimeZoom</p>\n" +
                 "                        </td>\n" +
                 "                    </tr>\n" +
                 "                </table>\n" +
@@ -80,9 +80,8 @@ public class MessageHtmlUtil {
                 "                    <tr>\n" +
                 "                        <td bgcolor=\"#ffffff\" align=\"center\" style=\"padding: 30px 30px 30px 30px; border-radius: 4px 4px 4px 4px; color: #666666; font-family: 'Lato', Helvetica, Arial, sans-serif; font-size: 18px; font-weight: 400; line-height: 25px;\">\n" +
                 "                            <h2 style=\"font-size: 20px; font-weight: 400; color: #111111; margin: 0;\">Precisa de ajuda?</h2>\n" +
-                "                            <p style=\"margin: 0;\"><a href=\"https://gaian.com.br/contact/\" target=\"_blank\" style=\"color: #00bde1;\">Clique aqui!</a></p>\n" +
-                "                            <h2 style=\"font-size: 20px; font-weight: 400; color: #111111; margin: 0;\">Ou nos envie um e-mail:</h2>\n" +
-                "                            <a href=\"mailto:atendimento@gaian.com.br\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>atendimento@gaian.com.br</strong></a>\n" +
+                "                            <h2 style=\"font-size: 20px; font-weight: 400; color: #111111; margin: 0;\">Envie um e-mail:</h2>\n" +
+                "                            <a href=\"mailto:murakami.edson@gmail.com\" target=\"_blank\" rel=\"noreferrer noopener\"><strong>murakami.edson@gmail.com</strong></a>\n" +
                 "                        </td>\n" +
                 "                    </tr>\n" +
                 "                </table>\n" +
@@ -116,10 +115,7 @@ public class MessageHtmlUtil {
           + "<font face=\"Arial\"> </font>"
           + "<table align=\"center\" border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"600\">"
           + " <tr>"
-          + "  <td align=\"center\" bgcolor=\"#000000\" style=\"padding: 15px 0 15px 0;\">"
-          + "    <a href=\"https://gaian.com.br\">"
-    	  + "      <img src=\"https://gaian.com.br/wp-content/uploads/2021/08/cropped-logo_Gaian_baixa_RGB.png\" alt=\"Gaian\" width=\"180\" height=\"100\" style=\"display: block;\" />"
-          + "     </a>"
+          + "  <td align=\"center\" bgcolor=\"#000000\" style=\"padding: 15px 0 15px 0;\">"         
           + "    </td>"
           + "    </tr>"
           + "     <tr>"
@@ -150,7 +146,7 @@ public class MessageHtmlUtil {
           + "       Att."
           + "     </p>"
           + "     <p style=\"font-size:18px\">"
-          + "       Time Gaian."
+          + "       Atendimento."
           + "     </p>"
           + "    </td>"
           + "   </tr>"
@@ -162,7 +158,7 @@ public class MessageHtmlUtil {
           + "  <table border=\"0\" cellpadding=\"0\" cellspacing=\"0\" width=\"100%\">"
           + "    <tr>"
           + "      <td style=\"color: #ffffff; font-family: Arial, sans-serif; font-size: 14px;\">"
-          + "       Gaian. Salto-SP, 2022<br/>"
+          + "       IFSP. Salto-SP, 2025<br/>"
           + "      </td>"
           + "    </tr>"
           + "   </table>"
