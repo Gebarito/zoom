@@ -1,25 +1,46 @@
-<ui:composition
-  template="/WEB-INF/template/LayoutPadrao.xhtml"
-  xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:h="http://xmlns.jcp.org/jsf/html"
-  xmlns:f="http://xmlns.jcp.org/jsf/core"
-  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:p="http://primefaces.org/ui">
-  
-  <ui:define name="titulo">Zoom</ui:define>
-  <ui:define name="corpo">
-	
-	<h1>Bem Vindo ao ZoomApp!</h1>
-	
-	<h:head>
-		<meta charset="UTF-8"/>		
-        <title>Zoom</title>
-        <meta http-equiv="refresh" content="1;url=#{request.contextPath}/restricted/home/ZoomHome.xhtml" /> 
-	</h:head>	
-	
-	<div class="card">
-		<h:graphicImage library="imagens" name="paleta_esquerda.png" width="250" height="600" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{request.contextPath}/resources/imagens/zoom-favicon.ico" />
+	<link rel="shortcut icon" type="image/x-icon"
+		href="#{resource['imagens/zoom-favicon.ico']}" title="Zoom" />
+	<title>zoom</title>
+	<h:outputStylesheet library="css" name="sistema.css" />
+	<h:outputScript library="js" name="localeDatePicker.js"></h:outputScript>
+</h:head>
+
+
+
+<h:body>
+
+	<h:form>
+		<p:menubar>		
+			<p:menuitem value="Entrar" url="#{request.contextPath}/restricted/home/ZoomHome.xhtml" icon="pi pi-fw pi-power-off" />
+		</p:menubar>
+		
+	</h:form>
+
+	<div align="center" style="float: center">	
+	<p>
+		<h:graphicImage width="320" height="320" library="imagens"
+			name="logo-zoom.png" title="Zoom" />
+	</p>
+	<p>
+		<h:graphicImage width="320" height="120" library="imagens"
+			name="ifsp.png" title="IFSP" />
+	</p>
 	</div>
+
+
+</h:body>
 	
-  </ui:define>
-</ui:composition>
+
+</html>

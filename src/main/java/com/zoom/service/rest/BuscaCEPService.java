@@ -1,6 +1,7 @@
 package com.zoom.service.rest;
 
 import java.io.Serializable;
+import java.net.URI;
 import java.net.URL;
 import java.util.Iterator;
 
@@ -29,16 +30,14 @@ public class BuscaCEPService implements Serializable {
 	public EnderecoTO buscaEnderecoPorCEP(String cep) throws NegocioException {
 
 		try {
+			
+			URL url = URI.create("http://cep.republicavirtual.com.br/web_cep.php?cep=" + cep
+					+ "&formato=xml").toURL(); 
+			/* deprecatede desde java 20
 			URL url = new URL(
-					"http://cep.republicavirtual.com.br/web_cep.php?cep=" + cep
-							+ "&formato=xml");
+				"http://cep.republicavirtual.com.br/web_cep.php?cep=" + cep
+				+ "&formato=xml");*/
 			log.info(url);
-			
-			//URI uri = Paths.get("http://cep.republicavirtual.com.br/web_cep.php?cep=" + cep
-					//+ "&formato=xml").toUri() ;
-			//log.info(uri.toURL());
-
-			
 			
 			
 			Document document = getDocumento(url);
