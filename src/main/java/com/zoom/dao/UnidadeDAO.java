@@ -81,6 +81,11 @@ public class UnidadeDAO implements Serializable {
 	public List<Unidade> buscarTodos() {
 		return manager.createNamedQuery("Unidade.buscarTodos")
 				.getResultList();
+	}
+
+	public void setEntityManager(EntityManager em) {
+		this.manager = em;
+		
 	}	
 	
 
