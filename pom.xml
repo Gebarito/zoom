@@ -14,7 +14,6 @@
 		<maven.compiler.source>21</maven.compiler.source>
 		<maven.compiler.target>21</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<itext.version>7.1.12</itext.version>
 		<hibernate.version>5.6.15.Final</hibernate.version>
 	</properties>
 	<build>
@@ -33,7 +32,8 @@
 		</plugins>
 	</build>
 	<dependencies>
-		<!-- Servlet https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api anterior = 3.1.0 -->
+	
+		<!-- Servlet/JSF -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -45,27 +45,28 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.jboss.weld.servlet/weld-servlet-core -->
 		<dependency>
 		    <groupId>org.jboss.weld.servlet</groupId>
 		    <artifactId>weld-servlet-core</artifactId>
 		    <version>3.1.9.Final</version>
 		</dependency>
-		<!-- Weld (implementação do CDI) -->		
+		
+		
+		<!-- JSF e Expression Language -->		
 		<!-- Mojarra JSF implementation -->		
 		<dependency>
 			<groupId>org.glassfish</groupId>
 			<artifactId>javax.faces</artifactId>
 			<version>2.4.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/javax.el/javax.el-api -->
 		<dependency>
 			<groupId>javax.el</groupId>
 			<artifactId>javax.el-api</artifactId>
 			<version>3.0.0</version>
-		</dependency>		
+		</dependency>	
+					
 		
-		<!--  HIBERNATE e Pool de Conexões -->
+		<!--  HIBERNATE e Pool de Conexões, validators e jdbc -->
 		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
 		<dependency>
 		    <groupId>org.hibernate</groupId>
@@ -77,16 +78,13 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-c3p0</artifactId>
 			<version>${hibernate.version}</version>
-		</dependency>
-		
-		<!-- Implementacao do Validation -->
+		</dependency>		
 		<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
 		<dependency>
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>6.2.0.Final</version>
-		</dependency>
-		
+		</dependency>		
 		<!-- https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
 		<dependency>
 		    <groupId>com.mysql</groupId>
@@ -95,15 +93,16 @@
 		</dependency>
 
 
-
 		<!-- PrimeFaces (Biblioteca de componentes) -->
 		<!-- https://mvnrepository.com/artifact/org.primefaces/primefaces -->
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
 			<version>14.0.0</version>
-		</dependency>		
+		</dependency>	
+			
 
+		<!-- Elimina boiler codes -->
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -111,6 +110,7 @@
 			<version>1.18.38</version>
 			<scope>provided</scope>
 		</dependency>		
+		
 		
 		<!-- webservice cep -->
 		<!-- https://mvnrepository.com/artifact/com.google.code.gson/gson -->
@@ -134,39 +134,23 @@
 			<artifactId>jbcrypt</artifactId>
 			<version>0.4</version>
 		</dependency>
-		<!-- 		
-			APACHE para Upload e Download de PDF	
-		 -->
+
+
+		<!-- esqueci minha senha -->
 		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-email -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-email</artifactId>
 			<version>1.5</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-text -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-text</artifactId>
 			<version>1.10.0</version>
 		</dependency>
 		
-		<!-- 		
-			COMMONS para Upload e Download
-		 -->
-		<!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
-		<dependency>
-			<groupId>commons-fileupload</groupId>
-			<artifactId>commons-fileupload</artifactId>
-			<version>1.5</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<version>2.14.0</version>
-		</dependency>
-		<!-- TESTES -->
-		<!-- JUnit -->
+				
+		<!-- Testes JUnit -->
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
@@ -174,6 +158,8 @@
 			<version>5.8.2</version>
 			<scope>runtime</scope>
 		</dependency>
+		
+		
 		<!-- Logging SLF4J com Log4J  -->
 		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12-->
 		<dependency>
@@ -181,40 +167,15 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.28</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-core</artifactId>
 			<version>2.18.0</version>
 		</dependency>
-		<!-- lowagie para geração de PDFs -->
-		<dependency>
-    		<groupId>org.eclipse.birt.runtime.3_7_1</groupId> 
-    		<artifactId>com.lowagie.text</artifactId>
-    		<version>2.1.7</version>
-		</dependency>
-		<!-- iText para geração de PDFs -->
-		<dependency>
-			<groupId>com.itextpdf</groupId>
-			<artifactId>kernel</artifactId>
-			<version>${itext.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.itextpdf</groupId>
-			<artifactId>io</artifactId>
-			<version>${itext.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.itextpdf</groupId>
-			<artifactId>layout</artifactId>
-			<version>${itext.version}</version>
-		</dependency>	
-		<dependency>
-    		<groupId>com.itextpdf</groupId>
-    		<artifactId>html2pdf</artifactId>
-    		<version>3.0.0</version>
-		</dependency>	
-	</dependencies>
+		
+						
+	</dependencies>	
+	
 	<!-- Repositorio PrimeFaces atzualizado 	-->
 	<repositories>
 		<repository>
