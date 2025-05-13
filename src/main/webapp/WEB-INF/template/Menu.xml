@@ -9,8 +9,8 @@
 
 	<submenu label="Acolhimento" icon="pi pi-heart-fill">
 		<role value="TECNICO"></role>
-		<menuitem value="Agendamento" outcome=""> </menuitem>
-		<menuitem value="Atendimento" outcome=""> </menuitem>
+		<menuitem value="Atendimento" outcome="/restricted/acolimento/Atendimento.xhtml"> </menuitem>
+		<menuitem value="PreencherFicha" outcome=""> </menuitem>
 		<menuitem value="Listas de Espera" outcome=""> </menuitem>
 	</submenu>
 	
