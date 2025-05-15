@@ -22,6 +22,7 @@ import lombok.extern.log4j.Log4j;
  *
  */
 @Log4j
+
 public class AtendimentoDAO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -81,22 +82,30 @@ public class AtendimentoDAO implements Serializable {
 	}
 
 	@SuppressWarnings("unchecked")
+	public List<Atendimento> buscarTodos(Unidade unidade) throws ParseException {
+
+		LocalDateTime data = LocalDateTime.now();
+		data = data.minusYears(1);
+		log.info("Data inicio da busca: " + data);
+		return manager.createQuery("select a from Atendimento a where a.unidade = :unidade "
+				+ "and a.dataAgendamento > :data")
+				.setParameter("unidade", unidade)
+				.setParameter("data", data)
+				.getResultList();
+	}
+	
+	@SuppressWarnings("unchecked")
 	public List<Atendimento> buscarTodosAgendados(Unidade unidade) throws ParseException {
 
 		LocalDateTime data = LocalDateTime.now();
 		data = data.minusYears(1);
 		log.info("Data inicio da busca: " + data);
-
-		return manager.createNamedQuery("Atendimento.buscarTodosAgendados")
+		return manager.createQuery("select a from Atendimento a where a.unidade = :unidade "
+				+ "and a.statusAtendimento = :statusAtendimento "
+				+ "and a.dataAgendamento > :data")
 				.setParameter("unidade", unidade)
 				.setParameter("statusAtendimento", StatusAtendimento.AGENDADO)
 				.setParameter("data", data)
 				.getResultList();
 	}
-
-	// criado para realização de testes unitários com JIntegrity
-	public void setEntityManager(EntityManager manager) {
-		this.manager = manager;
-	}
-
 }

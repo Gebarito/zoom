@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -42,7 +43,7 @@ import lombok.extern.log4j.Log4j;
 @Setter
 @Named
 @ViewScoped
-public class AtendimentoBean implements Serializable {
+public class ManterAtendimentoBean implements Serializable {
 
 	private static final long serialVersionUID = 6570142544541959632L;
 
@@ -55,6 +56,12 @@ public class AtendimentoBean implements Serializable {
 	private List<StatusAtendimento> statusAtendimento;
 
 	private LocalDate currentDate;
+    private LocalDate minDate;
+    private LocalDate maxDate;
+    private LocalTime minTime;
+    private LocalTime maxTime;
+    private LocalDateTime minDateTime;
+    private LocalDateTime maxDateTime;
 
 	@Inject
 	private AtendimentoService AtendimentoService;
@@ -70,6 +77,14 @@ public class AtendimentoBean implements Serializable {
     	this.statusAtendimento = Arrays.asList(StatusAtendimento.values());
 
     	this.currentDate = LocalDate.now(); //inicia o calendário no dia atual
+        minDate = LocalDate.now().minusYears(1);
+        maxDate = LocalDate.now().plusYears(1);
+
+        minTime = LocalTime.of(9, 0, 0);
+        maxTime = LocalTime.of(17, 0, 0);
+
+        minDateTime = LocalDateTime.of(minDate, minTime);
+        maxDateTime = LocalDateTime.of(maxDate, maxTime);
 
     	event = DefaultScheduleEvent.builder()
 				.startDate(DateUtils.asLocalDateTime(new Date()))
@@ -138,10 +153,10 @@ public class AtendimentoBean implements Serializable {
 				((DefaultScheduleEvent<?>) event).setTitle(descricao);
 			}
 			catch(ArrayIndexOutOfBoundsException e) {
-				log.info("erro para limpar title " + event.getTitle()); 
+				log.info("erro para limpar title " + ((Atendimento)event.getData()).getNome()); 
 			}
 
-			log.debug("event.getTitle() " + event.getTitle()); 
+			log.debug("((Atendimento)event.getData()).getNome() " + ((Atendimento)event.getData()).getNome()); 
 
         // Atualize currentDate para a data selecionada
  	    this.currentDate = selectedDate.toLocalDate();
@@ -165,22 +180,23 @@ public class AtendimentoBean implements Serializable {
 	public void addEvent() {       
 
 		try {
+
 			//log.info("adicionando novo....... " + event.getId()); 
 	        if(event.getId() == null) {
 	        	//log.info("event id = null....... " + event.getId()); 
 	        	eventModel.addEvent(event);
 	        	//log.info("event adicionado no eventmodel....... ");
-
-	        	AtendimentoService.salvar(event, unidade, loginBean.getUsuario());
-	            //log.info("evento adicionado " + event.getId() + event.getTitle() + event.getStartDate()+ event.getEndDate()); 
+	    		
+	        	AtendimentoService.salvar(((Atendimento)event.getData()), unidade, loginBean.getUsuario(), event.getStartDate());
+	            //log.info("evento adicionado " + event.getId() + ((Atendimento)event.getData()).getNome() + event.getStartDate()+ event.getEndDate()); 
 	        }
 	        else {	 
 	        	//log.info("atualizando ....... " + event.getId());
 	        	eventModel.updateEvent(event);
 	        	//log.info("atualizado eventmodel....... " + event.getId());
-
-	        	AtendimentoService.atualizar(event);
-	            //log.info("evento alterado " + event.getId() + event.getTitle() + event.getStartDate()+ event.getEndDate());
+	    		
+	        	AtendimentoService.atualizar(((Atendimento)event.getData()), loginBean.getUsuario(), event.getStartDate());
+	            //log.info("evento alterado " + event.getId() + ((Atendimento)event.getData()).getNome() + event.getStartDate()+ event.getEndDate());
 	        }			
 		} catch (NegocioException e) {
 			MessageUtil.erro("Não foi possível salvar o evento : " + e.getMessage());
@@ -195,8 +211,8 @@ public class AtendimentoBean implements Serializable {
 
 	public void deleteEvent() {  
 
-		try {			
-			AtendimentoService.excluir(event);
+		try {
+			AtendimentoService.excluir((Atendimento)event.getData());
 			eventModel.deleteEvent(event);
 		} catch (NegocioException e) {
 			MessageUtil.erro("Não foi possível excluir o evento " + event.getId());
@@ -216,9 +232,8 @@ public class AtendimentoBean implements Serializable {
 	        	eventModel.updateEvent(event);
 	        	//log.info("atualizado eventmodel....... " + event.getId());
 
-	        	event.setEndDate(DateUtils.asLocalDateTime(new Date()));
-	        	AtendimentoService.completarATendimento(event);
-	            log.info("evento alterado " + event.getId() + event.getTitle() + event.getStartDate()+ event.getEndDate()); 
+	        	AtendimentoService.completarATendimento((Atendimento)event.getData(), DateUtils.asLocalDateTime(new Date()));
+	            log.info("evento alterado " + event.getId() + ((Atendimento)event.getData()).getNome() + event.getStartDate()+ event.getEndDate()); 
 	        }			
 		} catch (NegocioException e) {
 			MessageUtil.erro("Não foi possível terminar o acolimento: " + e.getMessage());

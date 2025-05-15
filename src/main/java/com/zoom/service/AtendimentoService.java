@@ -1,12 +1,11 @@
 package com.zoom.service;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.text.ParseException;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import org.primefaces.model.ScheduleEvent;
 
 import com.zoom.dao.AtendimentoDAO;
 import com.zoom.modelo.Atendimento;
@@ -35,77 +34,75 @@ public class AtendimentoService implements Serializable {
 
 
 
-	public Atendimento salvar(ScheduleEvent<?> event, Unidade unidade, Usuario tecnicoAgendamento) throws NegocioException {
+	public Atendimento salvar(Atendimento atendimento, Unidade unidade, Usuario tecnicoAgendamento, LocalDateTime dataAgendamento) throws NegocioException {
 
 		Atendimento Atendimento;
-
-		if(((Atendimento)event.getData()).getTecnicoAtendimento() != null) {
-			Atendimento = new Atendimento(event.getTitle(),
-					((Atendimento)event.getData()).getTelefone(),
-					((Atendimento)event.getData()).getDescricao(),
-					event.getStartDate(),
-					StatusAtendimento.AGENDADO, 
-					unidade,
-					((Atendimento)event.getData()).getTecnicoAtendimento());
-			log.info("event.getData() COM tecnico = " + ((Atendimento)event.getData()).getTecnicoAtendimento().getNome()); 
-		}
-		else {
-			Atendimento = new Atendimento(event.getTitle(),
-					((Atendimento)event.getData()).getTelefone(),
-					((Atendimento)event.getData()).getDescricao(),
-					event.getStartDate(),
-					StatusAtendimento.AGENDADO,
-					unidade,
-					null);
-			log.info("event.getData() SEM tecnico = ");
-		}
+		
+		Atendimento = new Atendimento();
+		Atendimento.setNome(atendimento.getNome());
+		Atendimento.setTelefone(atendimento.getTelefone());
+		Atendimento.setDescricao(atendimento.getDescricao());
+		Atendimento.setDataAgendamento(dataAgendamento);
+		Atendimento.setStatusAtendimento(StatusAtendimento.AGENDADO);
+		Atendimento.setUnidade(unidade);
+		Atendimento.setTecnicoAtendimento(atendimento.getTecnicoAtendimento());
 		Atendimento.setTecnicoAgendamento(tecnicoAgendamento);
+		if(atendimento.getTecnicoAtendimento() != null) {
+			Atendimento.setTecnicoAtendimento(atendimento.getTecnicoAtendimento());
+			log.info("event.getData() com tecnico = " + (atendimento.getTecnicoAtendimento().getNome())); 
+		}else {
+			Atendimento.setTecnicoAtendimento(null);
+			log.info("event.getData() sem tecnico = "); 
+		}
 
 		return this.AtendimentoDAO.merge(Atendimento);
 	}
 
-	public void atualizar(ScheduleEvent<?> event) throws NegocioException {
+	public void atualizar(Atendimento atendimento, Usuario tecnicoAgendamento, LocalDateTime dataAgendamento) throws NegocioException {
 
 		//log.info("evento atz service " + ((Atendimento)event.getData()).getCodigo());
 
-		Atendimento Atendimento = AtendimentoDAO.buscarPeloCodigo( ((Atendimento)event.getData()).getCodigo() );
+		Atendimento Atendimento = AtendimentoDAO.buscarPeloCodigo(atendimento.getCodigo());
 
-		if(((Atendimento)event.getData()).getTecnicoAtendimento() != null) {
+		if(atendimento.getTecnicoAtendimento() != null) {
 
 
-			Atendimento.setTecnicoAtendimento( ((Atendimento)event.getData()).getTecnicoAtendimento() );
+			Atendimento.setTecnicoAtendimento(Atendimento.getTecnicoAtendimento());
 
-			log.info("event.getData() tecnico = " + ((Atendimento)event.getData()).getTecnicoAtendimento().getNome()); 
+			log.info("event.getData() tecnico = " + (atendimento.getTecnicoAtendimento().getNome())); 
 		}
 		else {
-			if(Atendimento.getTecnicoAtendimento() != null) {
+			if(atendimento.getTecnicoAtendimento() != null) {
 				throw new NegocioException("Não é permitido deixar sem um Assistente Social!");
 			}
 			Atendimento.setTecnicoAtendimento( null );			
 		}		
-		Atendimento.setNome(event.getTitle());
+		Atendimento.setNome(atendimento.getNome());
+		Atendimento.setTelefone(atendimento.getTelefone());
+		Atendimento.setDescricao(atendimento.getDescricao());
+		Atendimento.setDataAgendamento(dataAgendamento);
 		Atendimento.setStatusAtendimento(StatusAtendimento.AGENDADO);
-		Atendimento.setDataAgendamento(event.getStartDate());
+		Atendimento.setTecnicoAgendamento(tecnicoAgendamento);
 
 		//log.info("Atendimento recuperado " + calendario.getCodigo() + " end " + calendario.getEndDate()); 
 		this.AtendimentoDAO.merge(Atendimento);
 	}
 
-	public void completarATendimento(ScheduleEvent<?> event) throws NegocioException {
+	public void completarATendimento(Atendimento atendimento, LocalDateTime dataAtendido) throws NegocioException {
 
-		//log.info("evento atz service " + ((Atendimento)event.getData()).getCodigo());
+		//log.info("evento atz service " + (atendimento.getCodigo());
 
-		Atendimento Atendimento = AtendimentoDAO.buscarPeloCodigo( ((Atendimento)event.getData()).getCodigo() );
-		Atendimento.setDataAtendimento(event.getEndDate());
+		Atendimento Atendimento = AtendimentoDAO.buscarPeloCodigo(atendimento.getCodigo());
+		Atendimento.setDataAtendimento(dataAtendido);
 		Atendimento.setStatusAtendimento(StatusAtendimento.ATENDIDO);
 
 		//log.info("Atendimento recuperado " + calendario.getCodigo() + " end " + calendario.getEndDate()); 
 		this.AtendimentoDAO.merge(Atendimento);
 	}
 
-	public void excluir(ScheduleEvent<?> event) throws NegocioException {
-		Atendimento calendario = AtendimentoDAO.buscarPeloCodigo( ((Atendimento)event.getData()).getCodigo());
-		AtendimentoDAO.excluir(calendario);		
+	public void excluir(Atendimento atendimento) throws NegocioException {
+		Atendimento Atendimento = AtendimentoDAO.buscarPeloCodigo(atendimento.getCodigo());
+		AtendimentoDAO.excluir(Atendimento);
 	}
 
 	public Atendimento buscarPeloCodigo(Long codigo) {

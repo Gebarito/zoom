@@ -19,7 +19,7 @@
 
 			    <h:panelGrid columns = "1" columnClasses="value">	
 
-			     	<p:schedule id="atendimento" value="#{atendimentoBean.eventModel}"  widgetVar="atendimento"
+			     	<p:schedule id="atendimento" value="#{manterAtendimentoBean.eventModel}"  widgetVar="atendimento"
 			     		leftHeaderTemplate = "prev,next today"
 			     		centerHeaderTemplate = "title"
 			     		rightHeaderTemplate = "dayGridMonth,timeGridWeek,timeGridDay,listYear"
@@ -40,11 +40,11 @@
 			     		tooltip = "true"
 			     		allDaySlot = "true"
 			     		rtl = "false"
-			     		initialDate="#{atendimentoBean.currentDate}" 
+			     		initialDate="#{manterAtendimentoBean.currentDate}"
 			     	>  
 
-			        	<p:ajax event="eventSelect" listener="#{atendimentoBean.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
-			        	<p:ajax event="dateSelect" listener="#{atendimentoBean.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+			        	<p:ajax event="eventSelect" listener="#{manterAtendimentoBean.onEventSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
+			        	<p:ajax event="dateSelect" listener="#{manterAtendimentoBean.onDateSelect}" update="eventDetails" oncomplete="PF('eventDialog').show();" />
 
 			        </p:schedule>
 
@@ -55,48 +55,48 @@
 
 
 			            <p:outputLabel for="title" value="Nome:" />
-	            		<p:inputText id="title" value="#{atendimentoBean.event.title}" required="true" size="50"/>
+	            		<p:inputText id="title" value="#{manterAtendimentoBean.event.data.nome}" required="true" size="50"/>
 
 	            		<p:outputLabel for="telefone" value="Telefone: " />
-	            		<p:inputText id="telefone" value="#{atendimentoBean.event.data.telefone}" required="true" size="50"/>
+	            		<p:inputMask id="telefone" value="#{manterAtendimentoBean.event.data.telefone}" required="true" size="50" mask="(99) 99999-9999" validateMask="true"/>
 	            		
 	            		<p:outputLabel for="descricao" value="Descrição: " />
-	            		<p:inputText id="descricao" value="#{atendimentoBean.event.data.descricao}" required="false" size="50"/>
+	            		<p:inputText id="descricao" value="#{manterAtendimentoBean.event.data.descricao}" required="false" size="50"/>
 
 	            		<p:outputLabel value="Técnico do atendimento:" for="tecnicoAtendimento"/>
 	           			<p:selectOneMenu id="tecnicoAtendimento" 
-			    			value="#{atendimentoBean.event.data.tecnicoAtendimento}" required="false">
+			    			value="#{manterAtendimentoBean.event.data.tecnicoAtendimento}" required="false">
 			    			<f:selectItem itemLabel="---" />
-			    			<f:selectItems value="#{atendimentoBean.tecnicos}" var="tecnico"
+			    			<f:selectItems value="#{manterAtendimentoBean.tecnicos}" var="tecnico"
 								itemLabel="#{tecnico.nome}" itemValue="#{tecnico}"/>
 			    		</p:selectOneMenu>
 
 			            <p:outputLabel for="from" value="Dia e Hora:" />
-						<p:calendar id="from" size="20"
-							value="#{atendimentoBean.event.startDate}"
+						<p:datePicker id="from" size="20"
+							value="#{manterAtendimentoBean.event.startDate}"
+			     			mindate="#{manterAtendimentoBean.minDateTime}"
+							maxdate="#{manterAtendimentoBean.maxDateTime}"
+							stepMinute="30"
 							required="true"
-							showOn="button" 
-							pattern="dd/MM/yyyy HH:mm"
-							mask="99/99/9999 99:99"
-							disabledWeekends="false"
-							/>           
+							showButtonBar="true"
+							/>
 
 				        <h:panelGroup>
 				            <p:commandButton id="addButton" value="Salvar" 
-							    action="#{atendimentoBean.addEvent()}" 
+							    action="#{manterAtendimentoBean.addEvent()}" 
 							    oncomplete="PF('eventDialog').hide();"
 							    update="frmPesquisa:atendimento messages"/>
 
 			            	 <p:commandButton id="delButton" value="Apagar"
-					            action="#{atendimentoBean.deleteEvent}"
+					            action="#{manterAtendimentoBean.deleteEvent}"
 				            	oncomplete="PF('eventDialog').hide();"
 				            	update="frmPesquisa:atendimento messages"/>
 
 			            	<p:commandButton id="closeButton" value="Fechar"
 				            	oncomplete="PF('eventDialog').hide();"/>
 
-				            <p:commandButton id="completeButton" value="Atendido"
-					            action="#{atendimentoBean.completeEvent}"
+				            <p:commandButton id="completeButton" value="Atender"
+					            action="#{manterAtendimentoBean.completeEvent}"
 				            	oncomplete="PF('eventDialog').hide();"
 				            	update="frmPesquisa:atendimento messages"/>		            	
 		            	</h:panelGroup>
