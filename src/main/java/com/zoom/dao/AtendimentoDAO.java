@@ -2,7 +2,6 @@ package com.zoom.dao;
 
 import java.io.Serializable;
 import java.text.ParseException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -32,7 +31,7 @@ public class AtendimentoDAO implements Serializable {
 
 
 	@Transactional
-	public Atendimento merge(Atendimento Atendimento) throws NegocioException {
+	public Atendimento salvar(Atendimento Atendimento) throws NegocioException {
 		try {
 			return manager.merge(Atendimento);
 		} catch (PersistenceException e) {
@@ -80,32 +79,14 @@ public class AtendimentoDAO implements Serializable {
 	public Atendimento buscarPeloCodigo(Long codigo) {
 		return manager.find(Atendimento.class, codigo);
 	}
-
-	@SuppressWarnings("unchecked")
-	public List<Atendimento> buscarTodos(Unidade unidade) throws ParseException {
-
-		LocalDateTime data = LocalDateTime.now();
-		data = data.minusYears(1);
-		log.info("Data inicio da busca: " + data);
-		return manager.createQuery("select a from Atendimento a where a.unidade = :unidade "
-				+ "and a.dataAgendamento > :data")
-				.setParameter("unidade", unidade)
-				.setParameter("data", data)
-				.getResultList();
-	}
 	
 	@SuppressWarnings("unchecked")
 	public List<Atendimento> buscarTodosAgendados(Unidade unidade) throws ParseException {
 
-		LocalDateTime data = LocalDateTime.now();
-		data = data.minusYears(1);
-		log.info("Data inicio da busca: " + data);
 		return manager.createQuery("select a from Atendimento a where a.unidade = :unidade "
-				+ "and a.statusAtendimento = :statusAtendimento "
-				+ "and a.dataAgendamento > :data")
+				+ "and a.statusAtendimento = :statusAtendimento ")
 				.setParameter("unidade", unidade)
 				.setParameter("statusAtendimento", StatusAtendimento.AGENDADO)
-				.setParameter("data", data)
 				.getResultList();
 	}
 }

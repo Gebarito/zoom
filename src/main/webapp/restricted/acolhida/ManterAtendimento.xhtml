@@ -9,7 +9,7 @@
     <ui:define name="titulo">Agendar Atendimento</ui:define>
 
     <ui:define name="corpo">
-    	<h1>Agendamento do Atendimento</h1>
+    	<h1>Agendar Atendimento</h1>
 
     	<div class="card">
     	<p:tooltip/>
@@ -50,7 +50,7 @@
 
 			    </h:panelGrid>			    
 
-		    	<p:dialog widgetVar="eventDialog" header="Agendamento da Acolida" showEffect="clip" hideEffect="clip" >
+		    	<p:dialog widgetVar="eventDialog" header="Agendamento da Acolhida" showEffect="clip" hideEffect="clip" >
 			        <h:panelGrid id="eventDetails" columns="2">
 
 
@@ -66,7 +66,7 @@
 	            		<p:outputLabel value="Técnico do atendimento:" for="tecnicoAtendimento"/>
 	           			<p:selectOneMenu id="tecnicoAtendimento" 
 			    			value="#{manterAtendimentoBean.event.data.tecnicoAtendimento}" required="false">
-			    			<f:selectItem itemLabel="---" />
+			    			<f:selectItem itemLabel="Escolha um técnico" />
 			    			<f:selectItems value="#{manterAtendimentoBean.tecnicos}" var="tecnico"
 								itemLabel="#{tecnico.nome}" itemValue="#{tecnico}"/>
 			    		</p:selectOneMenu>
