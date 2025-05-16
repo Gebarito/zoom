@@ -9,7 +9,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -50,8 +49,8 @@ public class RestService implements Serializable {
 		con = null;
 		try {
 			//url = new URL(URL_WS_UF);
-			URI uri = Paths.get(URL_WS_UF).toUri();
-			url = uri.toURL();
+			url = URI.create(URL_WS_UF).toURL();
+
 			con = (HttpURLConnection) url.openConnection();
 
 			if (con.getResponseCode() != HTTP_COD_SUCESSO) {
@@ -115,8 +114,7 @@ public class RestService implements Serializable {
 		con = null;
 		try {
 			//url = new URL(URL_WS_MU.concat(uf));
-			URI uri = Paths.get(URL_WS_MU.concat(uf)).toUri();
-			url = uri.toURL();
+			url = URI.create(URL_WS_MU.concat(uf)).toURL();			
 			
 			con = (HttpURLConnection) url.openConnection();
 

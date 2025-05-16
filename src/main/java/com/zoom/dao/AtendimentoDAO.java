@@ -1,35 +1,39 @@
 package com.zoom.dao;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceException;
 
+import com.zoom.modelo.Atendimento;
 import com.zoom.modelo.Unidade;
+import com.zoom.modelo.enums.StatusAtendimento;
 import com.zoom.util.NegocioException;
 import com.zoom.util.jpa.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceException;
 import lombok.extern.log4j.Log4j;
 
 /**
- * @author murakamiadmin
+ * @author Timpone
  *
  */
 @Log4j
-public class UnidadeDAO implements Serializable {
+
+public class AtendimentoDAO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Inject
-	private EntityManager manager;	
-	
+	private EntityManager manager;
+
+
 	@Transactional
-	public Unidade salvar(Unidade unidade) throws NegocioException {
+	public Atendimento salvar(Atendimento Atendimento) throws NegocioException {
 		try {
-			log.info("unidade nome dao = " + unidade.getNome());
-			return manager.merge(unidade);
+			return manager.merge(Atendimento);
 		} catch (PersistenceException e) {
 			e.printStackTrace();
 			throw new NegocioException("Não foi possível executar a operação.");
@@ -44,12 +48,12 @@ public class UnidadeDAO implements Serializable {
 			throw new NegocioException("Não foi possível executar a operação.");
 		}
 	}
-	
+
 	@Transactional
-	public void excluir(Unidade unidade) throws NegocioException {
-		unidade = buscarPeloCodigo(unidade.getCodigo());
+	public void excluir(Atendimento Atendimento) throws NegocioException {
+		Atendimento = buscarPeloCodigo(Atendimento.getCodigo());
 		try {
-			manager.remove(unidade);
+			manager.remove(Atendimento);
 			manager.flush();
 		} catch (PersistenceException e) {
 			e.printStackTrace();
@@ -65,29 +69,24 @@ public class UnidadeDAO implements Serializable {
 			throw new NegocioException("Não foi possível executar a operação.");
 		}
 	}
-	
-	
-	
+
+
+
 	/*
 	 * Buscas
 	 */
 	
-	
-	public Unidade buscarPeloCodigo(Long codigo) {
-		return manager.find(Unidade.class, codigo);
+	public Atendimento buscarPeloCodigo(Long codigo) {
+		return manager.find(Atendimento.class, codigo);
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Unidade> buscarTodos() {
-		return manager.createNamedQuery("Unidade.buscarTodos")
+	public List<Atendimento> buscarTodosAgendados(Unidade unidade) throws ParseException {
+
+		return manager.createQuery("select a from Atendimento a where a.unidade = :unidade "
+				+ "and a.statusAtendimento = :statusAtendimento ")
+				.setParameter("unidade", unidade)
+				.setParameter("statusAtendimento", StatusAtendimento.AGENDADO)
 				.getResultList();
 	}
-
-	public void setEntityManager(EntityManager em) {
-		this.manager = em;
-		
-	}	
-	
-
-	
 }

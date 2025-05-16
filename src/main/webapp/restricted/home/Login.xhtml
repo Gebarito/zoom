@@ -25,29 +25,22 @@ xmlns="http://www.w3.org/1999/xhtml"
 				<p:growl id="growl" sticky="false" showDetail="true" life="2000" />
 
 				<div class="card">
-					<p:splitter style="height: 400px" styleClass="p-mb-5">
+				 <p:splitter style="height: 400px" styleClass="mb-5" widgetVar="splitter">
 
-						<p:splitterPanel styleClass="p-d-flex p-ai-center p-jc-center">
-							<div class="contact-container">
+						<p:splitterPanel styleClass="flex align-items-center justify-content-center">
+				
 								<br />
-								<br />
-								<br />
-								<br />
-								<h:graphicImage library="imagens"  style="vertical-align:middle" name="logo-zoom.png" width="150" height="150"/>
-								<br />
-								<br />
-								<br />
+								<p:graphicImage library="imagens" name="logo-zoom.png" width="150" height="150"/>
 								<h1>Bem-vindo!</h1>
-								<br />
 								<h:outputText id="user" value="#{loginBean.usuario.nome}"
 									style="font-weight:bold" />
 								<br />
 								<h:outputLabel id="counter"
 									value="Usuário ##{loginBean.counter}" />
-							</div>
+					
 						</p:splitterPanel>
 
-						<p:splitterPanel styleClass="p-d-flex p-ai-center p-jc-center">
+						<p:splitterPanel styleClass="flex align-items-center justify-content-center">
 
 							<h:panelGrid id="autenticar" columns="1" cellpadding="10"
 								style="margin: 0 auto;">
