@@ -144,6 +144,7 @@ public class ManterAtendimentoBean implements Serializable {
     public void onEventSelect(SelectEvent<ScheduleEvent<?>> selectEvent) {
 
 		event = selectEvent.getObject();
+
 		LocalDateTime selectedDate = (LocalDateTime) event.getStartDate();
 
         log.debug("event " + getEvent()); 			
@@ -187,7 +188,14 @@ public class ManterAtendimentoBean implements Serializable {
 	        	eventModel.addEvent(event);
 	        	//log.info("event adicionado no eventmodel....... ");
 	    		
-	        	AtendimentoService.salvar(((Atendimento)event.getData()), unidade, loginBean.getUsuario(), event.getStartDate());
+	        	Atendimento atendimento = (Atendimento)event.getData();
+	        	
+	        	//TODO atualizar os atributos de atendimento para minimizar codigo no service
+	        	atendimento.setDataAgendamento(event.getStartDate());
+	        	
+	        	log.info("event.data = " + atendimento.toString());
+	        	
+	        	AtendimentoService.salvar(atendimento, unidade, loginBean.getUsuario(), event.getStartDate());
 	            //log.info("evento adicionado " + event.getId() + ((Atendimento)event.getData()).getNome() + event.getStartDate()+ event.getEndDate()); 
 	        }
 	        else {	 

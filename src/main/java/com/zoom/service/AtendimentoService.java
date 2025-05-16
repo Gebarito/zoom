@@ -33,9 +33,11 @@ public class AtendimentoService implements Serializable {
 	private UsuarioService usuarioService;
 
 
-
+	//TODO parametro so o atendimento. Atribuir os dados no bean.
 	public Atendimento salvar(Atendimento atendimento, Unidade unidade, Usuario tecnicoAgendamento, LocalDateTime dataAgendamento) throws NegocioException {
 
+		// TODO retirar
+		/*
 		Atendimento Atendimento;
 		
 		Atendimento = new Atendimento();
@@ -47,6 +49,7 @@ public class AtendimentoService implements Serializable {
 		Atendimento.setUnidade(unidade);
 		Atendimento.setTecnicoAtendimento(atendimento.getTecnicoAtendimento());
 		Atendimento.setTecnicoAgendamento(tecnicoAgendamento);
+		
 		if(atendimento.getTecnicoAtendimento() != null) {
 			Atendimento.setTecnicoAtendimento(atendimento.getTecnicoAtendimento());
 			log.info("event.getData() com tecnico = " + (atendimento.getTecnicoAtendimento().getNome())); 
@@ -54,18 +57,17 @@ public class AtendimentoService implements Serializable {
 			Atendimento.setTecnicoAtendimento(null);
 			log.info("event.getData() sem tecnico = "); 
 		}
+		*/
 
-		return this.AtendimentoDAO.merge(Atendimento);
+		return this.AtendimentoDAO.merge(atendimento);
 	}
 
+	//TODO idem ao salvar
 	public void atualizar(Atendimento atendimento, Usuario tecnicoAgendamento, LocalDateTime dataAgendamento) throws NegocioException {
-
-		//log.info("evento atz service " + ((Atendimento)event.getData()).getCodigo());
 
 		Atendimento Atendimento = AtendimentoDAO.buscarPeloCodigo(atendimento.getCodigo());
 
 		if(atendimento.getTecnicoAtendimento() != null) {
-
 
 			Atendimento.setTecnicoAtendimento(Atendimento.getTecnicoAtendimento());
 

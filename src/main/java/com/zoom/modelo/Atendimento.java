@@ -27,7 +27,7 @@ import lombok.ToString;
  * @author Timpone
  *
  */
-@ToString(onlyExplicitlyIncluded = true)
+
 @EqualsAndHashCode(callSuper = false, onlyExplicitlyIncluded = true)
 @Getter
 @Setter
@@ -39,12 +39,10 @@ public class Atendimento implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@ToString.Include
 	@EqualsAndHashCode.Include
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long codigo;
-
 	private String nome;
 	private String telefone;
 	private String descricao;
