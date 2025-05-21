@@ -1,0 +1,43 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+ 	xmlns:f="http://xmlns.jcp.org/jsf/core"
+ 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">	
+	
+	<p:toolbar id="toolbar">
+		<f:facet name="left">			
+            
+            <p:commandButton title="Incluir Pessoa" icon="pi pi-user-plus"
+            	value="Incluir Pessoa"
+            	rendered="#{manterProntuarioBean.atendidoSelecionado}"         	
+            	actionListener="#{manterProntuarioBean.responsaveisBean.limpar}"             	
+            	oncomplete="PF('pessoaDialogWidgetVar').show();"
+            	update="pessoaPanelGrid toolbar"
+            	immediate="true"
+            	process="@this">
+            	<p:resetInput target="pessoaDialog" />	
+           	</p:commandButton>
+           	
+		</f:facet>
+	</p:toolbar>
+	
+	
+	
+	<p:dialog id="pessoaDialog" header="Novo responsável" widgetVar="pessoaDialogWidgetVar"
+   		modal="true" resizable="true" closeOnEscape="true"
+		showEffect="explode" hideEffect="explode" 
+		width="100%" position="center top" maximizable="true"
+		height="70%" fitViewport="true" responsive="true">  			
+		
+		<p:panelGrid columns="2" id="pessoaPanelGrid" style="width: 100%" 
+			columnClasses="rotulo, campo">
+   			
+    		<p:outputLabel value="Nome"/>
+    		<p:outputLabel value="Nome"/>
+				
+		</p:panelGrid>
+
+	</p:dialog>	
+	
+</ui:composition>

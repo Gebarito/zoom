@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+ 	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+ 	  xmlns:f="http://xmlns.jcp.org/jsf/core"
+	  xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<h:outputStylesheet library="css" name="sistema.css" />
+		<title>Seleção de Pessoas</title>
+	</h:head>
+    
+    <h:body>
+     	<p:tooltip/>
+    	<h:form id="frmSeleciona" >
+    	
+    		<p:messages id="messages" showDetail="false" closable="true">
+        		<p:autoUpdate />
+    		</p:messages> 	
+			
+	    	<p:toolbar style="margin-top: 10px">
+	    	  <f:facet name="left">
+	    		
+	    		<!--  selectOneRadio -->				
+					
+				<h:panelGrid columns="4" style="margin-bottom:5px" cellpadding="5">
+			        <p:outputLabel for="parametro" value="Pesquisar por: "/>
+			        <p:selectOneRadio id="parametro" value="#{selecionaAtendidoBean.parametro}" unselectable="true">
+			            <f:selectItem itemLabel="Nome" itemValue="nome" />
+			            <f:selectItem itemLabel="Prontuário" itemValue="prontuario" />
+			        </p:selectOneRadio>
+			        
+			        <p:inputText id="termoPesquisa" placeholder="Digite o termo correspondente para a pesquisa." 
+						size="40" value="#{selecionaAtendidoBean.termoPesquisa}"/>
+										
+					<p:commandButton value="Pesquisar" icon="pi pi-search"
+						actionListener="#{selecionaAtendidoBean.pesquisar}" update="atendidoDataTable"
+						process="@this parametro termoPesquisa"/>	
+    			</h:panelGrid>
+	    		
+	    	  </f:facet>
+	    	</p:toolbar>	    	 
+		    
+		    <p:dataTable id="atendidoDataTable" 
+		    	value="#{selecionaAtendidoBean.listaAtendidos}"
+		    	var="atendido" style="margin-top: 20px" 
+		    	emptyMessage="Nenhum atendido encontrada." 
+		    	paginator="true" rows="10" paginatorPosition="bottom"
+		    	paginatorAlwaysVisible="true" scrollable="true" resizeMode="true">
+		    	
+				<p:column headerText="Código" style="width: 40px; text-align: center">
+					<h:outputText value="#{atendido.codigo}" />
+				</p:column>
+				
+    			<p:column headerText="Nome" style="width: 160px; text-align: center">
+					<h:outputText value="#{atendido.nome}" />
+				</p:column>
+					
+				<p:column headerText="Selecionar"
+					style="width: 60px; text-align: left">
+		    		<p:commandButton value="Selecionar" icon="pi pi-check"
+		    		 action="#{selecionaAtendidoBean.selecionarAtendido(atendido)}"
+		    		 process="@this"/>
+		    	</p:column>			
+		    		
+
+			</p:dataTable>	    	
+    	</h:form>
+    	
+    </h:body>
+    
+</html>
