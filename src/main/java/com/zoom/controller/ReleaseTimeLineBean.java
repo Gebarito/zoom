@@ -41,28 +41,22 @@ public class ReleaseTimeLineBean implements Serializable {
     
     @PostConstruct
     protected void initialize() {
-        model = new TimelineModel<>();
-        model.add(TimelineEvent.<String>builder().data("v0.2.0")
-        		.startDate(LocalDate.of(2025, 04, 14)).build());
-        model.add(TimelineEvent.<String>builder().data("v0.1.0")
+        model = new TimelineModel<>();        
+        model.add(TimelineEvent.<String>builder().data("v0.0.1")
         		.startDate(LocalDate.of(2025, 03, 20)).build());
        
     }
 
     /* LAST VERSION */
-    private String lastVersion = "v0.2.0";
+    private String lastVersion = "v0.0.1";
     /* LAST VERSION */
     
     public void onSelect(TimelineSelectEvent<String> e) {
         TimelineEvent<String> timelineEvent = e.getTimelineEvent();
         String versao = timelineEvent.getData();
         
-        switch(versao) {
-        case "v0.2.0": 
-	    	MessageUtil.sucesso("14/abr/2025");
-	    	MessageUtil.sucesso("Incluidos Cadastros e Login.");	    	
-	    	break;
-        case "v0.1.0": 
+        switch(versao) {       
+        case "v0.0.1": 
 	    	MessageUtil.sucesso("20/mar/2025");
 	    	MessageUtil.sucesso("Início do projeto Zoom.");	    	
 	    	break;
