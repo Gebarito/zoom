@@ -3,7 +3,7 @@
 	<submenu label="Cadastros" icon="pi pi-folder-open">
 		<role value="GESTOR"></role>
 		<menuitem value="Unidades" outcome="/restricted/cadastros/ManterUnidade.xhtml"> </menuitem>
-		<role value="GESTOR"></role>
+		<menuitem value="Unidades de Rede" outcome="/restricted/cadastros/ManterUnidadeRede.xhtml"> </menuitem>
 		<menuitem value="Usuarios" outcome="/restricted/cadastros/ManterUsuario.xhtml"> </menuitem>		
 	</submenu>
 
