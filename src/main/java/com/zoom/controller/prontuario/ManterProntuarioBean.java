@@ -13,6 +13,7 @@ import org.primefaces.event.SelectEvent;
 
 import com.zoom.controller.LoginBean;
 import com.zoom.modelo.Atendido;
+import com.zoom.modelo.Pessoa;
 import com.zoom.util.MessageUtil;
 
 import lombok.Getter;
@@ -33,31 +34,28 @@ public class ManterProntuarioBean extends AbrirDialogoPessoa implements Serializ
 	private static final long serialVersionUID = 1769116747361287180L;
 
 	private Atendido atendido;
-	private List<Atendido> listaAtendido = new ArrayList<>();
+	private List<Pessoa> pessoas = new ArrayList<>();
 
 	@Inject
 	private LoginBean loginBean;
 	@Inject
 	private ResponsaveisBean responsaveisBean;
-		
 
 	@PostConstruct
-	public void inicializar() {		
+	public void inicializar() {
 		log.info("ManterProntuarioBean");
-	}	
+	}
 
 	public void abrirDialogo() {
 		abrirDialogoAtendido();
 	}
-	
 
 	public void selecionarAtendido(SelectEvent<?> event) {
-	
-		
+
 		this.atendido = (Atendido) event.getObject();
-		
+
 		this.responsaveisBean.setAtendido(atendido);
-		
+
 		log.info("ManterProntuarioBean atendido: " + atendido.getNome());
 		MessageUtil.sucesso("Atendido selecionado: " + atendido.getNome());
 	}
@@ -66,4 +64,5 @@ public class ManterProntuarioBean extends AbrirDialogoPessoa implements Serializ
 		return atendido != null && atendido.getCodigo() != null;
 	}
 
+	
 }

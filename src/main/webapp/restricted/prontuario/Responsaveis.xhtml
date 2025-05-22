@@ -22,6 +22,47 @@
 		</f:facet>
 	</p:toolbar>
 	
+	<!-- Lista de familiares/Responsáveis -->
+	
+	<p:spacer height="5px" />
+  
+	<p:dataTable id="responsaveisDataTable"  value="#{manterProntuarioBean.responsaveisBean.atendido.responsaveis}" 
+   		var="pessoa" emptyMessage="Nenhuma pessoa encontrada." 
+   		paginator="true" rows="10" paginatorPosition="bottom" paginatorAlwaysVisible="true"
+   		selectionMode="single" selection="#{manterProntuarioBean.responsaveisBean.pessoa}" rowKey="#{pessoa.codigo}"> 
+	    		
+    		<p:ajax event="rowSelect" process="responsaveisDataTable" update="responsaveisDataTable"/>
+			<p:ajax event="rowUnselect" process="responsaveisDataTable" update="responsaveisDataTable"/>/>
+   		
+   													    			    				    		
+   		<p:column headerText="Código" style="width: 10px; text-align: center">	    		
+   			<h:outputText value="#{pessoa.codigo}" />
+   		</p:column>
+   		   		
+   		<p:column headerText="Nome" style="width: 65px; text-align: center">	    		
+   			<h:outputText value="#{pessoa.nome}" />
+   		</p:column>
+   		
+   		
+   		
+   		<p:column exportable="false" id="coluna_Op" headerText="Operações" style="width: 70px; text-align: center">
+   			
+   							
+			<p:commandButton id="bt_editar" title="Editar" icon="pi pi-pencil" 
+            	oncomplete="PF('pessoaDialogWidgetVar').show()"
+            	update=":frmProntuario:tab1:pessoaDialog :frmProntuario:tab1:pessoaPanelGrid" 
+            	process="@this">
+            	
+            	<f:setPropertyActionListener target="#{manterProntuarioBean.responsaveisBean.pessoa}" 
+					value="#{pessoa}" />
+           	</p:commandButton>
+			
+			<p:spacer width="2px"/>
+			
+				</p:column>	
+   	</p:dataTable>
+	
+	<!-- Dialogs -->
 	
 	
 	<p:dialog id="pessoaDialog" header="Novo responsável" widgetVar="pessoaDialogWidgetVar"

@@ -12,6 +12,7 @@ import org.primefaces.PrimeFaces;
 
 import com.zoom.controller.LoginBean;
 import com.zoom.modelo.Atendido;
+import com.zoom.service.SelecionaPessoaService;
 import com.zoom.util.MessageUtil;
 
 import lombok.Getter;
@@ -41,6 +42,8 @@ public class SelecionaAtendidoBean implements Serializable {
 
 	@Inject
 	private LoginBean loginBean;
+	@Inject
+	private SelecionaPessoaService spService;
 	
 	
 	public void pesquisar() {	
@@ -53,10 +56,7 @@ public class SelecionaAtendidoBean implements Serializable {
 				
 				//TODO buscar
 				log.info("buscando por nome: " + getParametro());
-				Atendido atendido = new Atendido();
-				atendido.setCodigo(1l);
-				atendido.setNome("fulano atendido");
-				listaAtendidos.add(atendido);
+				listaAtendidos = spService.buscarPorNome(termoPesquisa, loginBean.getUsuario().getUnidade());				
 			}
 			
 			if (listaAtendidos.isEmpty()) {
