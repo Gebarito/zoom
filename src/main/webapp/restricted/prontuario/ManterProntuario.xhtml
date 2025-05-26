@@ -1,0 +1,57 @@
+<ui:composition template="/WEB-INF/template/LayoutPadrao.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+ 	xmlns:f="http://xmlns.jcp.org/jsf/core"
+ 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="titulo">Manter Prontuário</ui:define>
+    
+    <ui:define name="corpo"> 
+       
+    	<p:tooltip/>	
+    	<h:form id="frmProntuario"> 		    	
+    	    		
+    		<p:growl id="growl" showDetail="true"> 
+    			<p:autoUpdate />
+    		</p:growl>       		    			
+			
+			<p:toolbar id="toolbarManter" >
+				<f:facet name="left">	
+					<p:commandButton value="Pesquisar Atendido" icon="pi pi-search" 
+						title="Pesquisar Atendido"						
+						actionListener="#{manterProntuarioBean.abrirDialogo}"
+					 	process="@this"
+					 	update= "@none">
+					 	<p:ajax event="dialogReturn" listener="#{manterProntuarioBean.selecionarAtendido}" 
+					 		update="frmProntuario toolbarManter growl"
+					 		process="@this"/>
+					</p:commandButton>
+					
+				</f:facet>
+			</p:toolbar>	
+			
+			<!--  Componente Cabeçalho -->
+			
+			<ui:include src="/componentes/AtendidoUI.xhtml">
+                <ui:param name="atendido" value="#{manterProntuarioBean.atendido}" />
+            </ui:include>
+         
+		    
+		    <!--  Abas  -->
+		
+			<p:tabView id="tab1" scrollable="false" dynamic="false" cache="true" rendered="#{manterProntuarioBean.atendidoSelecionado}">
+
+		        <p:tab id="tabResponsaveis" title="Responsáveis">		            
+		            <ui:include src="/restricted/prontuario/Responsaveis.xhtml"/>
+		        </p:tab>
+		        <p:tab id="tabSaude" title="Saúde">		            
+		            <ui:include src=""/>
+		        </p:tab>
+		        
+    		</p:tabView> 
+			
+		</h:form>
+			
+    </ui:define>
+</ui:composition>
