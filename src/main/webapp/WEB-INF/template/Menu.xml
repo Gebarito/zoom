@@ -14,5 +14,10 @@
 		<menuitem value="Listas de Espera" outcome=""> </menuitem>
 	</submenu>
 	
+	<submenu label="Prontuario" icon="pi pi-folder-open">
+		<role value="GESTOR"></role>
+		<menuitem value="Manter Prontuario" outcome="/restricted/prontuario/ManterProntuario.xhtml"> </menuitem>		
+	</submenu>
+	
 	
 </menu>

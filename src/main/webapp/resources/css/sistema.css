@@ -1,0 +1,16 @@
+/* centralizar a janelas*/
+.centralizado {
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  
+ /*diminuir a letra dos componentes*/
+ body .ui-widget{ 
+ 	font-size: 0.80rem!important;
+ } 
+ 
+/*diminue a distancia das colunas do dashboard*/ 
+ .ui-dashboard-column {
+    padding-bottom: 30px !important;
+}
